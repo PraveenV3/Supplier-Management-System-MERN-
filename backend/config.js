@@ -1,5 +1,6 @@
 export const PORT = 5555;
 
 export const mongoDBURL =
-  'mongodb+srv://hima123:hima123@foodie.ucvzre5.mongodb.net/supply';
+'mongodb+srv://nsjay:nsjay@cluster0.6arup8r.mongodb.net/supplier';
+  
 
