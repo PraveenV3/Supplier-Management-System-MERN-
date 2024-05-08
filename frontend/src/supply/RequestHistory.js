@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import swal from 'sweetalert';
-import Header from '../components/header';
-import Sidebar from '../components/sidebar';
+import Header from '../components/Header';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; 
 
@@ -245,12 +244,7 @@ class RequestHistory extends Component {
         return (
             <div className={`container ${isDarkMode ? "dark" : ""}`}>
                 <Header isDarkMode={isDarkMode} />
-                <Sidebar
-                    isSidebarOpen={isSidebarOpen}
-                    toggleSidebar={this.toggleSidebar}
-                    isDarkMode={isDarkMode}
-                    toggleDarkMode={this.toggleDarkMode}
-                />
+                
                 {flashMessage && (
                     <div style={{ backgroundColor: flashMessageType === 'success' ? '#4CAF50' : '#F44336', color: '#fff', textAlign: 'center', padding: '10px', position: 'fixed', top: '70px', left: '50%', transform: 'translateX(-50%)', zIndex: 1000, }}>
                         {flashMessage}

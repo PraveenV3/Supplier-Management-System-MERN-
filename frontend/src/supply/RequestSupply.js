@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import sideImage from '../images/reqBack.png';
 import { FaUserFriends, FaHistory } from 'react-icons/fa';
+
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 
-const RequestSupply = ({ isDarkMode }) => {
+const RequestSupply = () => {
     const [formData, setFormData] = useState({
         supplierName: '',
         supply: '',
@@ -78,7 +79,7 @@ const RequestSupply = ({ isDarkMode }) => {
         width: '80%', 
         margin: '50px',
         marginTop: '50px',
-        backgroundColor: isDarkMode ? '#333' : '#fff',
+        backgroundColor:  '#fff' ,
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         borderRadius: '10px',
         padding: '20px',
@@ -96,9 +97,9 @@ const RequestSupply = ({ isDarkMode }) => {
         padding: '10px 0',
         margin: '10px 20px',
         border: 'none',
-        borderBottom: `2px solid ${isDarkMode ? '#555' : '#ccc'}`,
+        borderBottom: '2px solid #ccc',
         backgroundColor: 'transparent',
-        color: isDarkMode ? '#ddd' : '#333',
+        color:  '#333'  ,
         fontSize: '16px',
         outline: 'none',
     };
@@ -106,7 +107,7 @@ const RequestSupply = ({ isDarkMode }) => {
     const labelStyle = {
         fontWeight: 'lighter',
         marginBottom: '5px',
-        color: isDarkMode ? '#ddd' : '#333',
+        color:  '#333' ,
     };
 
     const buttonStyle = {
@@ -150,8 +151,8 @@ const RequestSupply = ({ isDarkMode }) => {
 
     const buttonContainerStyle = {
         position: 'absolute',
-        top: '28%',
-        right: '50px',
+        top: '1%',
+        right: '180px',
         transform: 'translateY(-50%)',
         display: 'flex',
         flexDirection: 'column',
@@ -161,8 +162,9 @@ const RequestSupply = ({ isDarkMode }) => {
     return (
         <div>
             <div style={cardStyle}>
+            
                 <form onSubmit={handleSubmit} style={formSectionStyle}>
-                    <h2 style={{ color: isDarkMode ? '#fff' : '#000', marginBottom: '20px' }}>Request Supplies</h2>
+                    <h2 style={{color:'#000',  marginBottom: '20px' }}>Request Supplies</h2>
 
                     <label htmlFor="supplierName" style={labelStyle}>Company Name</label>
                     <select
@@ -217,7 +219,6 @@ const RequestSupply = ({ isDarkMode }) => {
                     <img src={sideImage} alt="Profile" style={{ width: '120%', height: 'auto' }} />
                 </div>
             </div>
-
             <div style={buttonContainerStyle}>
             <Link to="/manage-suppliers" style={buttontwo}>
                 <FaUserFriends style={iconStyle} />

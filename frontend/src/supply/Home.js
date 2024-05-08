@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Sidebar from '../components/sidebar';
-import Header from '../components/header';
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 import Request from '../supply/RequestSupply';
+import { Link } from 'react-router-dom';
 
 import '../styles/style.css';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -10,40 +11,37 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isDarkMode: false,
-            isSidebarOpen: false,
+            
         };
     }
 
-    toggleDarkMode = () => {
-        const { isDarkMode } = this.state;
-        this.setState(prevState => ({
-            isDarkMode: !prevState.isDarkMode,
-        }));
-        document.body.classList.toggle("dark", !isDarkMode);
-    }
+    
 
-    toggleSidebar = () => {
-        this.setState(prevState => ({
-            isSidebarOpen: !prevState.isSidebarOpen,
-        }));
-    }
+    
 
     render() {
-        const { isDarkMode, isSidebarOpen } = this.state;
+        const {  } = this.state;
         return (
-            <div className={`container ${isDarkMode ? "dark" : ""}`}>
-                
+            <div className={`{container}`}style={{marginTop:'-3.5%'}}>
+                <Header />
                 <Sidebar
-                    isSidebarOpen={isSidebarOpen}
-                    toggleSidebar={this.toggleSidebar}
-                    isDarkMode={isDarkMode}
-                    toggleDarkMode={this.toggleDarkMode}
-                    
                 />
-                <Header isDarkMode={isDarkMode} />
-                <div className="home" style={{ marginTop: '3%' }}>
-                    <Request isDarkMode={isDarkMode} />
+                
+                <div className="home" style={{width: '90%', marginTop: '-45%',marginLeft: '2%' }}>
+                {/* <div>
+                    <Link to="/manage-suppliers" >
+                    <button>
+                    Manage Suppliers
+                    </button>
+                    </Link>
+                    
+                    <Link to="/request-history">
+                    <button>
+                    Request History
+                    </button>
+                    </Link>
+                </div> */}
+                    <Request />
                 </div>
             </div>
         );

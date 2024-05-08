@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import swal from 'sweetalert';
-import Header from '../components/header';
-import Sidebar from '../components/sidebar';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import '../styles/style.css';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; 
@@ -12,8 +12,7 @@ class ManageSupply extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isDarkMode: false,
-            isSidebarOpen: false,
+            
             suppliers: [],
             isAddModalOpen: false,
             isEditModalOpen: false,
@@ -49,20 +48,6 @@ class ManageSupply extends Component {
             console.error("Couldn't fetch suppliers", error);
         }
     };
-
-    toggleDarkMode = () => {
-        const { isDarkMode } = this.state;
-        this.setState(prevState => ({
-            isDarkMode: !prevState.isDarkMode,
-        }));
-        document.body.classList.toggle("dark", !isDarkMode);
-    }
-
-    toggleSidebar = () => {
-        this.setState(prevState => ({
-            isSidebarOpen: !prevState.isSidebarOpen,
-        }));
-    }
 
     toggleAddModal = () => {
         this.setState(prevState => ({
@@ -255,11 +240,7 @@ class ManageSupply extends Component {
         
         const modalStyle = { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' };
         const modalContentStyle = { backgroundColor: isDarkMode ? '#333' : 'white', color: isDarkMode ? 'white' : 'black', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', width: '400px' };
-        const cardStyleAdjustment = {
-            transition: 'all 0.3s',
-            marginLeft: isSidebarOpen ? '90px' : '80px',
-            width: isSidebarOpen ? 'calc(100% - 150px)' : '85%' 
-        };
+        const cardStyleAdjustment = { };
 
         const commonStyles = {
             cardStyle: {
@@ -277,7 +258,7 @@ class ManageSupply extends Component {
                 ...cardStyleAdjustment,
                 transition: 'all 0.3s',
                 marginLeft: 'var(--sidebar-width, 80px)',
-                width: 'calc(100% - var(--sidebar-width, 80px) - 20px)', 
+                width: 'calc(100%  - 20px)', 
             },
 
             tableStyle: {
@@ -323,7 +304,6 @@ class ManageSupply extends Component {
                 color: '#ff3860', fontSize: '0.8rem', marginTop: '0.25rem',
             },
             buttonStyle2: {
-                padding: '8px 10px',
                 borderRadius: '5px',
                 fontSize: '14px',
                 border: 'none',
@@ -334,7 +314,6 @@ class ManageSupply extends Component {
                 marginLeft: '85%'
             },
             buttonStyle3: {
-                padding: '8px 10px',
                 borderRadius: '5px',
                 fontSize: '14px',
                 border: 'none',
@@ -350,27 +329,25 @@ class ManageSupply extends Component {
 
         return (
             
-            <div className={`container ${isDarkMode ? "dark" : ""}`}  style={{ marginTop: '4%' }}>
-                <Header isDarkMode={isDarkMode} />
-                <Sidebar
-                    isSidebarOpen={isSidebarOpen}
-                    toggleSidebar={this.toggleSidebar}
-                    isDarkMode={isDarkMode}
-                    toggleDarkMode={this.toggleDarkMode}
-                />
-                        <button onClick={this.handlePDFGeneration} style={{ ...commonStyles.buttonStyle2, background: '#009688' }}>
+            <div className={`container`}  style={{ marginTop: '-3.5%' }}>
+                <Header />
+                <div className="home" style={{height: '100%',width:'100%',marginLeft: '-16%' }}>
+                <Sidebar/>
+                
+                
+                    <div style={{ height: '70%', marginLeft: '20%', 
+                    marginTop: '-45%' }}>
+                        <button onClick={this.handlePDFGeneration} style={{height:'10%', width:'10%',background: '#009688',marginTop:'1%',marginLeft:'80%',borderRadius:'5px',
+                        border: '1px solid #009688' }}>
                             Generate PDF
                         </button>
-
-                     
-                        <button onClick={this.toggleAddModal}  style={{ ...commonStyles.buttonStyle3, background: '#009688'}}>
-                            <FaPlus style={{ marginRight: '8px' }} />
-                            Add Suppliers
-                        </button>
-                      
-                
-                <div className="home">
-                    <div style={commonStyles.cardStyle}>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            <button onClick={this.toggleAddModal}  style={{width: '10%',background: '#009688',marginTop:'2%',marginLeft:'85%',borderRadius:'5px',
+                            border: '1px solid #009688' }}>
+                                Add Suppliers
+                            </button>
+                        </div>
+                        <div style={{...commonStyles.cardStyle, marginLeft:'1px',  marginTop:'5%'}}>
                     <h1 style={{ fontFamily: 'Arial, sans-serif', color: '#333', textAlign: 'center', fontWeight: 'bold', fontSize: '20px' }}>Details of Suppliers</h1>
                     <input
                             type="text"
@@ -456,8 +433,10 @@ class ManageSupply extends Component {
                             </div>
                         </div>
                     )}
+                    </div>
                 </div>
             </div>
+            
         );
     }
 }
